@@ -151,19 +151,19 @@ def convertToRGB(img):
 haar_face_cascade = cv2.CascadeClassifier('data/haarcascade_frontalface_alt.xml')
 
 #load test iamge
-test1 = cv2.imread('data/test1.jpg')
+test1 = cv2.imread('data/testaero.jpg')
 
 #convert the test image to gray image as opencv face detector expects gray images
 gray_img = cv2.cvtColor(test1, cv2.COLOR_BGR2GRAY)
 
 #display the gray image using OpenCV
-# cv2.imshow('Test Imag', gray_img)
-# cv2.waitKey(0)
-# cv2.destroyAllWindows()
+cv2.imshow('Test Imag', gray_img)
+cv2.waitKey(0)
+cv2.destroyAllWindows()
 
 #or if you have matplotlib installed then 
 plt.imshow(gray_img, cmap='gray')
-
+print('plt.imshow error ?')
 
 # Now we find the faces in the image with **`detectMultiScale`**. If faces are found, this function returns the positions of detected faces as Rect(x,y,w,h).
 
@@ -173,7 +173,7 @@ plt.imshow(gray_img, cmap='gray')
 faces = haar_face_cascade.detectMultiScale(gray_img, scaleFactor=1.1, minNeighbors=5);
 
 #print the number of faces found
-print('Faces found: ', len(faces))
+print('Jungle Faces found: ', len(faces))
 
 
 # Next, let's loop over the list of faces (rectangles) it returned and draw those rectangles using built in OpenCV **`rectangle`** function on our original colored image to see if it detected the right faces. 
@@ -191,7 +191,20 @@ for (x, y, w, h) in faces:
 
 #conver image to RGB and show image
 plt.imshow(convertToRGB(test1))
+print('plt.imshow error ?', len(faces))
 
+#convert the test image to gray image as opencv face detector expects gray images
+gray_img = cv2.cvtColor(test1, cv2.COLOR_BGR2GRAY)
+#display the gray image using OpenCV
+cv2.imshow('Test Imag', gray_img)
+cv2.waitKey(0)
+cv2.destroyAllWindows()
+
+# cant dispaly rgb ?
+# rgb_img = cv2.cvtColor(test1,cv2.COLOR_GRAY2RGB)
+# cv2.imshow('Test Imag', rgb_img)
+# cv2.waitKey(0)
+# cv2.destroyAllWindows()
 
 # ### Grouping Code into a Function
 
@@ -219,7 +232,7 @@ def detect_faces(f_cascade, colored_img, scaleFactor = 1.1):
 # In[8]:
 
 #load another image
-test2 = cv2.imread('data/test3.jpg')
+test2 = cv2.imread('data/testaero.jpg')
 
 #call our function to detect faces
 faces_detected_img = detect_faces(haar_face_cascade, test2)
